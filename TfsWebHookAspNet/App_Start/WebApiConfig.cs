@@ -19,6 +19,8 @@ namespace TfsWebHookAspNet
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.InitializeReceiveVstsWebHooks();
         }
     }
 }
