@@ -29,7 +29,7 @@ namespace TfsWebHookAspNet.Vsts
         }
         private bool areAllDevelopmentTasksCompleted(string userStoryId)
         {
-            var wiql = new { query = "Select [System.Id], [System.WorkItemType], [System.Title], [System.AssignedTo], [System.State] From WorkItemLinks WHERE (Source.[System.Id] = " + userStoryId + " and  Source.[System.WorkItemType] = 'User Story'  and Source.[System.State] <> 'Closed') and ([System.Links.LinkType] = 'System.LinkTypes.Hierarchy-Forward') and (Target.[System.WorkItemType] = 'Task' and Target.[System.State] <> 'Closed') mode(Recursive)" };
+            var wiql = new { query = "Select [System.Id], [System.WorkItemType], [System.Title], [System.AssignedTo], [System.State] From WorkItemLinks WHERE (Source.[System.Id] = " + userStoryId + " ) and ([System.Links.LinkType] = 'System.LinkTypes.Hierarchy-Forward') and (Target.[System.WorkItemType] = 'Task' and Target.[System.State] <> 'Closed') mode(Recursive)" };
             var wi = this.wiClient.GetWorkItemsWithQuery(JsonConvert.SerializeObject(wiql));
             return wi.Count() == 1;
         }
